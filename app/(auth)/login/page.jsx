@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import UseTextField from "../../components/inputs/UseTextField";
+import InputText from "../../components/inputs/InputText";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 import { useState } from "react";
@@ -38,8 +38,8 @@ export default function Page() {
         >
             <h2 className="text-2xl mb-3 text-white">Manufacturing system</h2>
             <div className="gap-6 flex flex-col items-center justify-center w-1/4 p-4 rounded-lg bg-white">
-                <UseTextField control={control} name="email" label="ชื่อผู้ใช้งาน" />
-                <UseTextField control={control} name="password" label="รหัสผ่าน" type="password" />
+                <InputText control={control} name="email" label="ชื่อผู้ใช้งาน" />
+                <InputText control={control} name="password" label="รหัสผ่าน" type="password" />
                 <div className="w-full flex items-center justify-center ">
                     <UseButton label="เข้าสู่ระบบ" loading={loading} htmlType="submit" />
                 </div>
