@@ -3,20 +3,7 @@ import { Input } from "antd";
 import { Controller } from "react-hook-form";
 import UseHelperText from "./UseHelperText";
 
-function InputText({
-    control,
-    name,
-    label = "",
-    onChange,
-    placeholder = "",
-    className,
-    icon: Icon,
-    variant = undefined,
-    size = "middle",
-    type = undefined,
-    disabled = false,
-    onPressEnter,
-}) {
+function InputText({ control, name, label = "", onChange, disabled = false }) {
     return (
         <Controller
             name={name}
@@ -29,12 +16,8 @@ function InputText({
                     <Input
                         {...field}
                         id={label}
-                        type={type}
-                        placeholder={label && !placeholder ? `โปรดระบุ ${label}` : placeholder}
-                        variant={variant}
-                        prefix={Icon && <Icon className="opacity-20 me-2" />}
-                        size={size}
-                        className={`w-full ${className}`}
+                        className="w-full"
+                        size="large"
                         onChange={(value) => {
                             if (typeof onChange === "function") {
                                 onChange(value);
@@ -42,8 +25,6 @@ function InputText({
                             field.onChange(value);
                         }}
                         disabled={disabled}
-                        status={error ? "error" : undefined}
-                        onPressEnter={onPressEnter}
                     />
                     {error && <UseHelperText errorMessage={error.message} />}
                 </div>

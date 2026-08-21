@@ -2,6 +2,7 @@
 import UseButton from "@/app/components/inputs/UseButton";
 import UseTable from "@/app/components/utility/UseTable";
 import { useColumnSearch } from "@/app/hooks/useColumnSearch";
+import { PlusOutlined } from "@ant-design/icons";
 import { useForm } from "react-hook-form";
 
 function Page() {
@@ -81,9 +82,9 @@ function Page() {
         },
     ];
     return (
-        <div>
+        <main>
             <UseTable dataSource={dataSource} columns={columns} />
-        </div>
+        </main>
     );
 }
 

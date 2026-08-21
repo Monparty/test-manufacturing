@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
             </div>
             <div className="flex-5 p-4 rounded border bg-white shadow border-x">
                 <BartopHeader label={mapPath} />
-                <div className="p-4 border border-x rounded h-[85dvh] overflow-auto">{children}</div>
+                <div className="p-4 border border-x rounded h-[86dvh] overflow-auto">{children}</div>
             </div>
         </div>
     );

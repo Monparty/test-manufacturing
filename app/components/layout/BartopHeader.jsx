@@ -3,7 +3,7 @@ import React from "react";
 
 function BartopHeader({ label }) {
     return (
-        <div className="p-3 border border-x rounded mb-4 flex justify-between items-center">
+        <div className="px-4 py-2 border border-x rounded mb-4 flex justify-between items-center">
             <h3>{label}</h3>
             <button
                 type="button"
