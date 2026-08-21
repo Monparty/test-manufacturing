@@ -9,9 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.3.2",
+    "@hookform/resolvers": "^5.9.1",
+    "antd": "^6.6.1",
     "next": "16.3.2",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-hook-form": "^7.85.0",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
