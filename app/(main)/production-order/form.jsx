@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import InputNumber from "@/app/components/inputs/InputNumber";
 import InputText from "@/app/components/inputs/InputText";
 import UseButton from "@/app/components/inputs/UseButton";
@@ -20,8 +21,6 @@ function Form({ modal, setModal, getDataList }) {
             reset({});
         }
     }, [modal]);
-
-    console.log("modal", modal);
 
     const onSubmit = async (value) => {
         try {

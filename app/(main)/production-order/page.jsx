@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/immutability */
 "use client";
 import UseButton from "@/app/components/inputs/UseButton";
+import ColActionTable from "@/app/components/utility/ColActionTable";
 import UseModal from "@/app/components/utility/UseModal";
 import UseTable from "@/app/components/utility/UseTable";
 import { useColumnSearch } from "@/app/hooks/useColumnSearch";
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { formatDatefromDB } from "@/app/hooks/useFormatDatefromDB";
+import { PlusOutlined } from "@ant-design/icons";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Form from "./form";
-import axios from "axios";
-import { formatDatefromDB } from "@/app/hooks/useFormatDatefromDB";
 
 function Page() {
     const { columnSearch } = useColumnSearch();
@@ -91,22 +92,12 @@ function Page() {
             dataIndex: "action",
             key: "action",
             width: 120,
-            render: (_, record) => {
-                return (
-                    <div className="flex justify-center gap-2">
-                        <UseButton
-                            label={<EditOutlined />}
-                            size="small"
-                            onClick={() => setIsModalOpen({ open: true, data: record })}
-                        />
-                        <UseButton
-                            label={<DeleteOutlined />}
-                            size="small"
-                            onClick={() => handleDeleteItem(record.id)}
-                        />
-                    </div>
-                );
-            },
+            render: (_, record) => (
+                <ColActionTable
+                    onEdit={() => setIsModalOpen({ open: true, data: record })}
+                    onDelete={() => handleDeleteItem(record.id)}
+                />
+            ),
         },
     ];
 
