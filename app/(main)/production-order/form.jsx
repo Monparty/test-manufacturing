@@ -8,9 +8,14 @@ import { taskStatusOptions } from "@/app/data/staticData";
 import axios from "axios";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./schema";
 
 function Form({ modal, setModal, getDataList }) {
-    const { handleSubmit, reset, control } = useForm();
+    const { handleSubmit, reset, control } = useForm({
+        resolver: yupResolver(schema),
+        mode: "onBlur",
+    });
 
     useEffect(() => {
         if (modal.data) {
