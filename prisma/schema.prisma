@@ -17,7 +17,7 @@ model ProductionOrder {
   id        Int                @id @default(autoincrement())
   product   String
   quantity  Int
-  status    TaskStatus         @default(PENDING)
+  status    TaskStatus?         @default(PENDING)
   dueDate   DateTime
   customer  String
   createdAt DateTime           @default(now())
@@ -31,7 +31,7 @@ model ProductionRecord {
   machineId         Int
   passedCount       Int
   failedCount       Int
-  remark            String
+  remark            String?
   producedAt        DateTime        @default(now())
 }
 
@@ -44,10 +44,10 @@ enum MachineStatus {
 model Machine {
   id          Int              @id @default(autoincrement())
   name        String
-  status      MachineStatus    @default(PENDING)
-  temp        Int
-  load        Int
-  time        DateTime
+  status      MachineStatus?    @default(PENDING)
+  temp        Int?
+  load        Int?
+  time        DateTime?
   maintenance MaintenanceLog[]
 }
 

@@ -1,0 +1,11 @@
+-- AlterTable
+ALTER TABLE "Machine" ALTER COLUMN "status" DROP NOT NULL,
+ALTER COLUMN "temp" DROP NOT NULL,
+ALTER COLUMN "load" DROP NOT NULL,
+ALTER COLUMN "time" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "ProductionOrder" ALTER COLUMN "status" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "ProductionRecord" ALTER COLUMN "remark" DROP NOT NULL;
