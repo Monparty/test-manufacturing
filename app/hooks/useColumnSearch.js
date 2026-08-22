@@ -13,7 +13,7 @@ export const useColumnSearch = () => {
                     icon={SearchOutlined}
                     placeholder={`ค้นหา...`}
                     onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-                    className="mb-3"
+                    className="mb-3!"
                     onPressEnter={confirm}
                 />
                 <div className="flex gap-2 justify-end">

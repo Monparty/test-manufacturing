@@ -6,8 +6,8 @@ import UseModal from "@/app/components/utility/UseModal";
 import UseTable from "@/app/components/utility/UseTable";
 import { useColumnSearch } from "@/app/hooks/useColumnSearch";
 import { formatDatefromDB } from "@/app/hooks/useFormatDatefromDB";
+import apiClient from "@/app/services/api";
 import { PlusOutlined } from "@ant-design/icons";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Form from "./form";
@@ -24,9 +24,9 @@ function Page() {
 
     const getDataList = async () => {
         try {
-            const resp = await axios.get("/api/productionOrder");
-            if (resp.status === 200) {
-                setDataSource(resp.data);
+            const res = await apiClient.getProductionOrder();
+            if (res.length > 0) {
+                setDataSource(res);
             }
         } catch (error) {
             console.error("error", error);
@@ -37,7 +37,7 @@ function Page() {
         try {
             let result = confirm("คุณต้องการลบรายการนี้หรือไม่?");
             if (!result) return;
-            await axios.delete(`/api/productionOrder/${id}`);
+            await apiClient.deleteProductionOrder(id);
             getDataList();
             alert("ลบข้อมูลสำเร็จ");
         } catch (error) {
@@ -50,7 +50,7 @@ function Page() {
             title: "ชื่อรายการ",
             dataIndex: "product",
             key: "product",
-            ...columnSearch("name", control, setValue),
+            ...columnSearch("product", control, setValue),
         },
         {
             title: "รหัส",

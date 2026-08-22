@@ -5,10 +5,10 @@ import UseButton from "@/app/components/inputs/UseButton";
 import UseDatePicker from "@/app/components/inputs/UseDatePicker";
 import UseSelect from "@/app/components/inputs/UseSelect";
 import { taskStatusOptions } from "@/app/data/staticData";
-import axios from "axios";
+import apiClient from "@/app/services/api";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 
 function Form({ modal, setModal, getDataList }) {
@@ -37,15 +37,15 @@ function Form({ modal, setModal, getDataList }) {
                 customer: value.customer,
             };
 
-            let resp;
+            let res;
             if (modal?.data?.id) {
                 // แก้ไข
-                resp = await axios.put(`/api/productionOrder/${modal.data.id}`, payload);
+                res = await apiClient.updateProductionOrder(modal.data.id, payload);
             } else {
                 // เพิ่ม
-                resp = await axios.post("/api/productionOrder", payload);
+                res = await apiClient.addProductionOrder(payload);
             }
-            if (resp.status === 200) {
+            if (res.success) {
                 alert("บันทึกสำเร็จ");
                 reset({});
                 getDataList();

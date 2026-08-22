@@ -3,7 +3,7 @@ import { Input } from "antd";
 import { Controller } from "react-hook-form";
 import UseHelperText from "./UseHelperText";
 
-function InputText({ control, name, label = "", onChange, disabled = false }) {
+function InputText({ control, name, label = "", onChange, disabled = false, className }) {
     return (
         <Controller
             name={name}
@@ -17,7 +17,7 @@ function InputText({ control, name, label = "", onChange, disabled = false }) {
                         {...field}
                         id={label}
                         placeholder={label}
-                        className="w-full"
+                        className={`${className} w-full`}
                         size="large"
                         onChange={(value) => {
                             if (typeof onChange === "function") {
