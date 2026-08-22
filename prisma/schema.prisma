@@ -4,7 +4,69 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+}
+
+enum TaskStatus {
+  IN_PROGRESS
+  COMPLETED
+  PENDING
+}
+
+model ProductionOrder {
+  id        Int                @id @default(autoincrement())
+  product   String
+  quantity  Int
+  status    TaskStatus         @default(PENDING)
+  dueDate   DateTime
+  customer  String
+  createdAt DateTime           @default(now())
+  records   ProductionRecord[]
+}
+
+model ProductionRecord {
+  id                Int             @id @default(autoincrement())
+  productionOrderId Int
+  order             ProductionOrder @relation(fields: [productionOrderId], references: [id])
+  machineId         Int
+  passedCount       Int
+  failedCount       Int
+  remark            String
+  producedAt        DateTime        @default(now())
+}
+
+enum MachineStatus {
+  NORMAL
+  ERROR
+  PENDING
+}
+
+model Machine {
+  id          Int              @id @default(autoincrement())
+  name        String
+  status      MachineStatus    @default(PENDING)
+  temp        Int
+  load        Int
+  time        DateTime
+  maintenance MaintenanceLog[]
+}
+
+model MaintenanceLog {
+  id         Int       @id @default(autoincrement())
+  machineId  Int
+  machine    Machine   @relation(fields: [machineId], references: [id])
+  issue      String
+  repairedAt DateTime?
+}
+
+enum StockLevel {
+  LOW
+  NORMAL
+  OUT_OF_STOCK
+}
+
+model Inventory {
+  id         Int        @id @default(autoincrement())
+  itemName   String
+  stockLevel StockLevel @default(LOW)
 }
