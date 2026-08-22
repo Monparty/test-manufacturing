@@ -24,7 +24,7 @@ function Page() {
 
     const getDataList = async () => {
         try {
-            const res = await apiClient.getProductionOrder();
+            const res = await apiClient.getProductionRecord();
             if (res.length > 0) {
                 setDataSource(res);
             }
@@ -37,7 +37,7 @@ function Page() {
         try {
             let result = confirm("คุณต้องการลบรายการนี้หรือไม่?");
             if (!result) return;
-            await apiClient.deleteProductionOrder(id);
+            await apiClient.deleteProductionRecord(id);
             getDataList();
             alert("ลบข้อมูลสำเร็จ");
         } catch (error) {
@@ -47,15 +47,15 @@ function Page() {
 
     const columns = [
         {
-            title: "ชื่อรายการ",
-            dataIndex: "product",
-            key: "product",
-            ...columnSearch("product", control, setValue),
+            title: "เครื่องจักร",
+            dataIndex: "machineId",
+            key: "machineId",
+            ...columnSearch("machineId", control, setValue),
         },
         {
-            title: "รหัส",
-            dataIndex: "id",
-            key: "id",
+            title: "สินค้า",
+            dataIndex: "productionOrderId",
+            key: "productionOrderId",
         },
         {
             title: "จำนวน",
@@ -64,28 +64,29 @@ function Page() {
             sorter: (a, b) => a.quantity - b.quantity,
         },
         {
-            title: "สถานะ",
-            dataIndex: "status",
-            key: "status",
+            title: "จำนวนที่ผ่านมาตรฐาน",
+            dataIndex: "passedCount",
+            key: "passedCount",
         },
         {
-            title: "วันกำหนดส่ง",
-            dataIndex: "dueDate",
-            key: "dueDate",
-            render: (value) => {
-                return <div className="flex justify-center">{formatDatefromDB(value)}</div>;
-            },
-            sorter: (a, b) => a.dueDate.localeCompare(b.dueDate),
+            title: "จำนวนที่ไม่ผ่านมาตรฐาน",
+            dataIndex: "failedCount",
+            key: "failedCount",
+        },
+        {
+            title: "หมายเหตุ",
+            dataIndex: "remark",
+            key: "remark",
         },
         {
             title: "วันที่สร้าง",
-            dataIndex: "createdAt",
-            key: "createdAt",
+            dataIndex: "producedAt",
+            key: "producedAt",
             render: (value) => {
                 return <div className="flex justify-center">{formatDatefromDB(value)}</div>;
             },
-            sorter: (a, b) => a.createdAt.localeCompare(b.createdAt),
-            defaultSortOrder: "createdAt",
+            sorter: (a, b) => a.producedAt.localeCompare(b.producedAt),
+            defaultSortOrder: "producedAt",
         },
         {
             title: "จัดการ",

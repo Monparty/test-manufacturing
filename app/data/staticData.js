@@ -16,7 +16,7 @@ export const pathMap = {
             <InboxOutlined /> จัดการสินค้าใน Stock
         </div>
     ),
-    "/production-tracking": (
+    "/production-record": (
         <div className="flex gap-2">
             <FormOutlined /> บันทึกผลการผลิต
         </div>
@@ -45,7 +45,7 @@ export const menuList = [
         icon: <InboxOutlined />,
     },
     {
-        href: "/production-tracking",
+        href: "/production-record",
         title: "บันทึกผลการผลิต",
         icon: <FormOutlined />,
     },
