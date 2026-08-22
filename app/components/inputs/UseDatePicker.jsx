@@ -1,9 +1,10 @@
 "use client";
-import { Input } from "antd";
+import { DatePicker } from "antd";
+import dayjs from "dayjs";
 import { Controller } from "react-hook-form";
 import UseHelperText from "./UseHelperText";
 
-function InputText({ control, name, label = "", onChange, disabled = false }) {
+function UseDatePicker({ control, name, label = "", onChange, disabled = false }) {
     return (
         <Controller
             name={name}
@@ -13,17 +14,17 @@ function InputText({ control, name, label = "", onChange, disabled = false }) {
                     <label htmlFor={label} className="text-sm mb-0.5 w-fit">
                         {label}
                     </label>
-                    <Input
+                    <DatePicker
                         {...field}
+                        value={field.value ? dayjs(field.value) : null}
                         id={label}
                         placeholder={label}
                         className="w-full"
                         size="large"
+                        format="DD/MM/YYYY"
                         onChange={(value) => {
-                            if (typeof onChange === "function") {
-                                onChange(value);
-                            }
-                            field.onChange(value);
+                            const formatValue = value?.toISOString() ?? null;
+                            field.onChange(formatValue ?? null);
                         }}
                         disabled={disabled}
                     />
@@ -34,4 +35,4 @@ function InputText({ control, name, label = "", onChange, disabled = false }) {
     );
 }
 
-export default InputText;
+export default UseDatePicker;

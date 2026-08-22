@@ -55,3 +55,18 @@ export const menuList = [
         icon: <PaperClipOutlined />,
     },
 ];
+
+export const taskStatusOptions = [
+    {
+        value: "PENDING",
+        label: "รอผลิต",
+    },
+    {
+        value: "IN_PROGRESS",
+        label: "กำลังผลิต",
+    },
+    {
+        value: "COMPLETED",
+        label: "เสร็จสิ้น",
+    },
+];

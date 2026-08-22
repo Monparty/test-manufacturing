@@ -1,9 +1,9 @@
 "use client";
-import { Input } from "antd";
+import { Select } from "antd";
 import { Controller } from "react-hook-form";
 import UseHelperText from "./UseHelperText";
 
-function InputText({ control, name, label = "", onChange, disabled = false }) {
+function UseSelect({ control, name, label = "", onChange, disabled = false, options = [] }) {
     return (
         <Controller
             name={name}
@@ -13,18 +13,19 @@ function InputText({ control, name, label = "", onChange, disabled = false }) {
                     <label htmlFor={label} className="text-sm mb-0.5 w-fit">
                         {label}
                     </label>
-                    <Input
+                    <Select
                         {...field}
                         id={label}
-                        placeholder={label}
                         className="w-full"
                         size="large"
+                        placeholder={label}
                         onChange={(value) => {
                             if (typeof onChange === "function") {
                                 onChange(value);
                             }
                             field.onChange(value);
                         }}
+                        options={options}
                         disabled={disabled}
                     />
                     {error && <UseHelperText errorMessage={error.message} />}
@@ -34,4 +35,4 @@ function InputText({ control, name, label = "", onChange, disabled = false }) {
     );
 }
 
-export default InputText;
+export default UseSelect;

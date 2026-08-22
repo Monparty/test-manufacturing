@@ -1,9 +1,9 @@
 "use client";
-import { Input } from "antd";
+import { InputNumber as UseInputNumber } from "antd";
 import { Controller } from "react-hook-form";
 import UseHelperText from "./UseHelperText";
 
-function InputText({ control, name, label = "", onChange, disabled = false }) {
+function InputNumber({ control, name, label = "", onChange, disabled = false }) {
     return (
         <Controller
             name={name}
@@ -13,11 +13,11 @@ function InputText({ control, name, label = "", onChange, disabled = false }) {
                     <label htmlFor={label} className="text-sm mb-0.5 w-fit">
                         {label}
                     </label>
-                    <Input
+                    <UseInputNumber
                         {...field}
                         id={label}
                         placeholder={label}
-                        className="w-full"
+                        className="w-full!"
                         size="large"
                         onChange={(value) => {
                             if (typeof onChange === "function") {
@@ -34,4 +34,4 @@ function InputText({ control, name, label = "", onChange, disabled = false }) {
     );
 }
 
-export default InputText;
+export default InputNumber;

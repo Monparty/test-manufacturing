@@ -7,3 +7,9 @@
 body {
     background-color: #f1f5fa;
 }
+
+.ant-table-thead {
+    .ant-table-cell {
+        text-align: center !important;
+    }
+}

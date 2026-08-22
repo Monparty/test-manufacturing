@@ -14,7 +14,7 @@ export function createCollectionHandlers(model) {
             try {
                 const data = await req.json();
                 const result = await model.create({ data });
-                return Response.json(result, { status: 201 });
+                return Response.json({ result, success: true });
             } catch (error) {
                 return handleApiError(error);
             }
@@ -44,7 +44,7 @@ export function createResourceHandlers(model) {
                     where: { id },
                     data: body,
                 });
-                return Response.json(updated);
+                return Response.json({ updated, success: true });
             } catch (error) {
                 return handleApiError(error);
             }
@@ -55,7 +55,7 @@ export function createResourceHandlers(model) {
                 const deleted = await model.delete({
                     where: { id },
                 });
-                return Response.json(deleted);
+                return Response.json({ deleted, success: true });
             } catch (error) {
                 return handleApiError(error);
             }
