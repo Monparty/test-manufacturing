@@ -1,4 +1,4 @@
-import { BarChartOutlined, CarryOutOutlined, FormOutlined, InboxOutlined, PaperClipOutlined } from "@ant-design/icons";
+import { BarChartOutlined, FormOutlined, InboxOutlined, PaperClipOutlined, RobotOutlined } from "@ant-design/icons";
 
 export const pathMap = {
     "/dashboard": (
@@ -8,7 +8,7 @@ export const pathMap = {
     ),
     "/machine-maintenance": (
         <div className="flex gap-2">
-            <CarryOutOutlined /> ดูสถานะเครื่องจักร แจ้งซ่อม
+            <RobotOutlined /> ดูสถานะเครื่องจักร แจ้งซ่อม
         </div>
     ),
     "/inventory": (
@@ -37,7 +37,7 @@ export const menuList = [
     {
         href: "/machine-maintenance",
         title: "ดูสถานะเครื่องจักร แจ้งซ่อม",
-        icon: <CarryOutOutlined />,
+        icon: <RobotOutlined />,
     },
     {
         href: "/inventory",
@@ -83,5 +83,20 @@ export const stockLevelOptions = [
     {
         value: "OUT_OF_STOCK",
         label: "สินค้าหมด",
+    },
+];
+
+export const machineStatusOptions = [
+    {
+        value: "NORMAL",
+        label: "ปกติ",
+    },
+    {
+        value: "PENDING",
+        label: "รอดำเนินการ",
+    },
+    {
+        value: "ERROR",
+        label: "เกิดข้อผิดพลาด",
     },
 ];
