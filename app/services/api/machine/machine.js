@@ -10,6 +10,11 @@ export const machine = {
             body,
         });
     },
+    getMachineUnique(id) {
+        return httpClient.get({
+            url: `${BASE_URL}/api/machine/${id}`,
+        });
+    },
     addMachine(body) {
         return httpClient.post({
             url: `${BASE_URL}/api/machine`,

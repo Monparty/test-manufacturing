@@ -1,15 +1,17 @@
 /* eslint-disable react-hooks/immutability */
 "use client";
 import UseButton from "@/app/components/inputs/UseButton";
-import CardMachine from "./components/CardMachine";
+import UseModal from "@/app/components/utility/UseModal";
+import apiClient from "@/app/services/api";
 import { PlusOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import apiClient from "@/app/services/api";
-import UseModal from "@/app/components/utility/UseModal";
+import CardMachine from "./components/CardMachine";
 import Form from "./form";
+import FormMaintain from "./formMaintain";
 
 function Page() {
     const [isModalOpen, setIsModalOpen] = useState({ open: false, data: null });
+    const [isModalMaintainOpen, setIsModalMaintainOpen] = useState({ open: false, data: null });
     const [dataSource, setDataSource] = useState([]);
 
     useEffect(() => {
@@ -52,10 +54,21 @@ function Page() {
             </div>
             <div className="grid grid-cols-2 gap-4">
                 {dataSource.length > 0 &&
-                    dataSource.map((item, index) => <CardMachine key={index} handleDeleteItem={handleDeleteItem} data={item} />)}
+                    dataSource.map((item, index) => (
+                        <CardMachine
+                            key={index}
+                            handleDeleteItem={handleDeleteItem}
+                            setIsModalOpen={setIsModalOpen}
+                            setIsModalMaintainOpen={setIsModalMaintainOpen}
+                            record={item}
+                        />
+                    ))}
             </div>
             <UseModal modal={isModalOpen.open} setModal={setIsModalOpen} title="เพิ่มเครื่องจักร">
                 <Form modal={isModalOpen} setModal={setIsModalOpen} getDataList={getDataList} />
+            </UseModal>
+            <UseModal modal={isModalMaintainOpen.open} setModal={setIsModalMaintainOpen} title="แจ้งซ่อม">
+                <FormMaintain modal={isModalMaintainOpen} setModal={setIsModalMaintainOpen} getDataList={getDataList} />
             </UseModal>
         </main>
     );

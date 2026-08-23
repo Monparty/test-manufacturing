@@ -59,7 +59,7 @@ function Form({ modal, setModal, getDataList }) {
     return (
         <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-4">
-                <InputText control={control} name="product" label="ชื่อสินค้า" />
+                <InputText control={control} name="product" label="ชื่อรายการ" />
                 <InputNumber control={control} name="quantity" label="จำนวน (หน่วย)" />
                 <UseDatePicker control={control} name="dueDate" label="วันกำหนดส่ง" />
                 <InputText control={control} name="customer" label="ลูกค้า" />

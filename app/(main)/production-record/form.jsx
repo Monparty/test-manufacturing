@@ -58,18 +58,20 @@ function Form({ modal, setModal, getDataList }) {
     return (
         <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-4">
-                <UseSelect
-                    control={control}
-                    name="machineId"
-                    label="เครื่องจักร"
-                    options={[{ label: 1, value: 1 }]}
-                />
+                <UseSelect control={control} name="machineId" label="เครื่องจักร" options={[{ label: 1, value: 1 }]} />
                 <UseSelect
                     control={control}
                     name="productionOrderId"
-                    label="สินค้า"
+                    label="ใบสั่งผลิต"
                     options={[{ label: 1, value: 1 }]}
                 />
+                <UseSelect
+                    control={control}
+                    name="inventoryId"
+                    label="สินค้าใน Stock"
+                    options={[{ label: 1, value: 1 }]}
+                />
+                <InputNumber control={control} name="quantity" label="จำนวน" />
                 <InputNumber control={control} name="passedCount" label="จำนวนที่ผ่านมาตรฐาน" />
                 <InputNumber control={control} name="failedCount" label="จำนวนที่ไม่ผ่านมาตรฐาน" />
             </div>

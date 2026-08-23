@@ -51,9 +51,14 @@ function Page() {
             ...columnSearch("machineId", control, setValue),
         },
         {
-            title: "สินค้า",
+            title: "ใบสั่งผลิต",
             dataIndex: "productionOrderId",
             key: "productionOrderId",
+        },
+        {
+            title: "สินค้าใน Stock",
+            dataIndex: "inventoryId",
+            key: "inventoryId",
         },
         {
             title: "จำนวน",

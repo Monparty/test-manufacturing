@@ -100,3 +100,9 @@ export const machineStatusOptions = [
         label: "เกิดข้อผิดพลาด",
     },
 ];
+
+export const machineStatusMap = {
+    NORMAL: { bg1: "bg-blue-100", bg2: "bg-blue-500" },
+    PENDING: { bg1: "bg-yellow-100", bg2: "bg-yellow-500" },
+    ERROR: { bg1: "bg-red-100", bg2: "bg-red-500" },
+};

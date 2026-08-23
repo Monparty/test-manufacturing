@@ -29,6 +29,8 @@ model ProductionRecord {
   productionOrderId Int
   order             ProductionOrder @relation(fields: [productionOrderId], references: [id])
   machineId         Int
+  inventoryId       Int
+  quantity          Int
   passedCount       Int
   failedCount       Int
   remark            String?
@@ -52,11 +54,11 @@ model Machine {
 }
 
 model MaintenanceLog {
-  id         Int       @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   machineId  Int
-  machine    Machine   @relation(fields: [machineId], references: [id])
+  machine    Machine  @relation(fields: [machineId], references: [id])
   issue      String
-  repairedAt DateTime?
+  repairedAt DateTime @default(now())
 }
 
 enum StockLevel {
