@@ -52,9 +52,9 @@ function Page() {
                     }
                 />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-                {dataSource.length > 0 &&
-                    dataSource.map((item, index) => (
+            {dataSource.length > 0 ? (
+                <div className="grid grid-cols-2 gap-4">
+                    {dataSource.map((item, index) => (
                         <CardMachine
                             key={index}
                             handleDeleteItem={handleDeleteItem}
@@ -63,7 +63,12 @@ function Page() {
                             record={item}
                         />
                     ))}
-            </div>
+                </div>
+            ) : (
+                <div className="flex justify-center items-center w-full h-40 bg-slate-100 text-slate-500 rounded">
+                    ไม่พบเครื่องจักร
+                </div>
+            )}
             <UseModal modal={isModalOpen.open} setModal={setIsModalOpen} title="เพิ่มเครื่องจักร">
                 <Form modal={isModalOpen} setModal={setIsModalOpen} getDataList={getDataList} />
             </UseModal>

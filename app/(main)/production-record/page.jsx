@@ -56,17 +56,6 @@ function Page() {
             key: "productionOrderId",
         },
         {
-            title: "สินค้าใน Stock",
-            dataIndex: "inventoryId",
-            key: "inventoryId",
-        },
-        {
-            title: "จำนวน",
-            dataIndex: "quantity",
-            key: "quantity",
-            sorter: (a, b) => a.quantity - b.quantity,
-        },
-        {
             title: "จำนวนที่ผ่านมาตรฐาน",
             dataIndex: "passedCount",
             key: "passedCount",

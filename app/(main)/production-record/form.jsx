@@ -30,7 +30,7 @@ function Form({ modal, setModal, getDataList }) {
         try {
             const payload = {
                 machineId: 1,
-                productionOrderId: 2,
+                productionOrderId: 1,
                 passedCount: value.passedCount,
                 failedCount: value.failedCount,
                 remark: value.remark,
@@ -65,13 +65,6 @@ function Form({ modal, setModal, getDataList }) {
                     label="ใบสั่งผลิต"
                     options={[{ label: 1, value: 1 }]}
                 />
-                <UseSelect
-                    control={control}
-                    name="inventoryId"
-                    label="สินค้าใน Stock"
-                    options={[{ label: 1, value: 1 }]}
-                />
-                <InputNumber control={control} name="quantity" label="จำนวน" />
                 <InputNumber control={control} name="passedCount" label="จำนวนที่ผ่านมาตรฐาน" />
                 <InputNumber control={control} name="failedCount" label="จำนวนที่ไม่ผ่านมาตรฐาน" />
             </div>
