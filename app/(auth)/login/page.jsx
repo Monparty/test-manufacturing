@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
 import { useState } from "react";
 import UseButton from "@/app/components/inputs/UseButton";
+import ImageLogo from "@/app/components/utility/ImageLogo";
 // import { login } from "../../services/auth.service";
 
 export default function Page() {
@@ -34,14 +35,20 @@ export default function Page() {
     return (
         <form
             onSubmit={handleSubmit(handleLogin)}
-            className="h-screen w-full flex flex-col items-center justify-center bg-linear-to-r from-cyan-500 to-blue-500"
+            className="h-dvh w-full flex bg-linear-to-r from-cyan-500 to-blue-500"
         >
-            <h2 className="text-2xl mb-3 text-white">Manufacturing system</h2>
-            <div className="gap-6 flex flex-col items-center justify-center w-1/4 p-4 rounded-lg bg-white">
-                <InputText control={control} name="email" label="ชื่อผู้ใช้งาน" />
-                <InputText control={control} name="password" label="รหัสผ่าน" type="password" />
-                <div className="w-full flex items-center justify-center ">
-                    <UseButton label="เข้าสู่ระบบ" loading={loading} htmlType="submit" />
+            <div className="hidden lg:block flex-2"></div>
+            <div className="flex-1">
+                <div className="w-full h-full">
+                    <div className="gap-4 flex flex-col items-center justify-center h-full px-8 bg-white">
+                        <ImageLogo w={100} h={100} />
+                        <h2 className="text-2xl font-semibold">Manufacturing system</h2>
+                        <InputText control={control} name="email" label="ชื่อผู้ใช้งาน" />
+                        <InputText control={control} name="password" label="รหัสผ่าน" type="password" />
+                        <div className="w-full flex items-center justify-center ">
+                            <UseButton label="เข้าสู่ระบบ" loading={loading} htmlType="submit" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

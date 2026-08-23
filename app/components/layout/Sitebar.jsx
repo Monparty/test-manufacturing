@@ -2,12 +2,20 @@
 import { menuList } from "@/app/data/staticData";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ImageLogo from "../utility/ImageLogo";
 
 function Sitebar() {
     const pathname = usePathname();
     return (
         <div>
-            <h2 className="text-xl font-semibold mb-4 pb-4 border-b border-b-x">Manufacturing system</h2>
+            <div className="mb-4 flex pb-4 border-b border-b-x gap-2 items-center">
+                <ImageLogo />
+                <h2 className="text-xl font-semibold">
+                    Manufacturing
+                    <br />
+                    system
+                </h2>
+            </div>
             <ul className="grid gap-4 w-full">
                 {menuList.map((item, index) => (
                     <>

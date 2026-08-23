@@ -103,7 +103,9 @@ function Form({ modal, setModal, getDataList, inventoryData }) {
                                 <div>
                                     คงเหลือ {item.quantity} {item.unit}
                                 </div>
-                                <div className="text-xs text-slate-500">
+                                <div
+                                    className={`text-xs ${item.quantity - (watch(String(item.id)) || 0) < 0 ? "text-red-500" : "text-slate-500"}`}
+                                >
                                     จะเหลือ {item.quantity - (watch(String(item.id)) || 0)} {item.unit}
                                 </div>
                             </div>
