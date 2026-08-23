@@ -17,15 +17,45 @@ function Page() {
     const { control, setValue } = useForm();
     const [isModalOpen, setIsModalOpen] = useState({ open: false, data: null });
     const [dataSource, setDataSource] = useState([]);
+    const [productionOrderOptions, setProductionOrderOptions] = useState([]);
+    const [machineOptions, setMachineOptions] = useState([]);
 
     useEffect(() => {
         getDataList();
+        getDataListProductionOrder();
+        getDataListMachine();
     }, []);
 
     const getDataList = async () => {
         try {
             const res = await apiClient.getProductionRecord();
             setDataSource(res);
+        } catch (error) {
+            console.error("error", error);
+        }
+    };
+
+    const getDataListProductionOrder = async () => {
+        try {
+            const res = await apiClient.getProductionOrder();
+            const formatData = res.map((item) => ({
+                value: item.id,
+                label: item.product,
+            }));
+            setProductionOrderOptions(formatData);
+        } catch (error) {
+            console.error("error", error);
+        }
+    };
+
+    const getDataListMachine = async () => {
+        try {
+            const res = await apiClient.getMachine();
+            const formatData = res.map((item) => ({
+                value: item.id,
+                label: item.name,
+            }));
+            setMachineOptions(formatData);
         } catch (error) {
             console.error("error", error);
         }
@@ -49,11 +79,26 @@ function Page() {
             dataIndex: "machineId",
             key: "machineId",
             ...columnSearch("machineId", control, setValue),
+            render: (value) => {
+                return (
+                    <div className="flex justify-center">
+                        {machineOptions?.find((item) => item.value === value)?.label || ""}
+                    </div>
+                );
+            },
         },
         {
             title: "ใบสั่งผลิต",
             dataIndex: "productionOrderId",
             key: "productionOrderId",
+            ...columnSearch("productionOrderId", control, setValue),
+            render: (value) => {
+                return (
+                    <div className="flex justify-center">
+                        {productionOrderOptions?.find((item) => item.value === value)?.label || ""}
+                    </div>
+                );
+            },
         },
         {
             title: "จำนวนที่ผ่านมาตรฐาน",
@@ -110,7 +155,13 @@ function Page() {
             </div>
             <UseTable dataSource={dataSource} columns={columns} />
             <UseModal modal={isModalOpen.open} setModal={setIsModalOpen} title="บันทึกผลการผลิต">
-                <Form modal={isModalOpen} setModal={setIsModalOpen} getDataList={getDataList} />
+                <Form
+                    modal={isModalOpen}
+                    setModal={setIsModalOpen}
+                    getDataList={getDataList}
+                    productionOrderOptions={productionOrderOptions}
+                    machineOptions={machineOptions}
+                />
             </UseModal>
         </main>
     );

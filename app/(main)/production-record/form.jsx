@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { schema } from "./schema";
 
-function Form({ modal, setModal, getDataList }) {
+function Form({ modal, setModal, getDataList, productionOrderOptions, machineOptions }) {
     const { handleSubmit, reset, control } = useForm({
         resolver: yupResolver(schema),
         mode: "onBlur",
@@ -26,11 +26,10 @@ function Form({ modal, setModal, getDataList }) {
     }, [modal]);
 
     const onSubmit = async (value) => {
-        console.log("value", value);
         try {
             const payload = {
-                machineId: 1,
-                productionOrderId: 1,
+                machineId: value.machineId,
+                productionOrderId: value.productionOrderId,
                 passedCount: value.passedCount,
                 failedCount: value.failedCount,
                 remark: value.remark,
@@ -58,12 +57,12 @@ function Form({ modal, setModal, getDataList }) {
     return (
         <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-4">
-                <UseSelect control={control} name="machineId" label="เครื่องจักร" options={[{ label: 1, value: 1 }]} />
+                <UseSelect control={control} name="machineId" label="เครื่องจักร" options={machineOptions} />
                 <UseSelect
                     control={control}
                     name="productionOrderId"
                     label="ใบสั่งผลิต"
-                    options={[{ label: 1, value: 1 }]}
+                    options={productionOrderOptions}
                 />
                 <InputNumber control={control} name="passedCount" label="จำนวนที่ผ่านมาตรฐาน" />
                 <InputNumber control={control} name="failedCount" label="จำนวนที่ไม่ผ่านมาตรฐาน" />
