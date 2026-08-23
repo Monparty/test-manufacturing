@@ -5,5 +5,4 @@ export const schema = yup.object({
     temp: yup.number().required("กรุณาระบุข้อมูล"),
     load: yup.number().required("กรุณาระบุข้อมูล"),
     time: yup.string().required("กรุณาระบุข้อมูล"),
-    status: yup.string().required("กรุณาระบุข้อมูล"),
 });

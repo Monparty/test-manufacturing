@@ -14,6 +14,9 @@ function Form({ modal, setModal, getDataList }) {
     const { handleSubmit, reset, control } = useForm({
         resolver: yupResolver(schema),
         mode: "onBlur",
+        defaultValues: {
+            stockLevel: "LOW",
+        },
     });
 
     useEffect(() => {

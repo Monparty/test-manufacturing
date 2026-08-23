@@ -17,15 +17,26 @@ function Page() {
     const { control, setValue } = useForm();
     const [isModalOpen, setIsModalOpen] = useState({ open: false, data: null });
     const [dataSource, setDataSource] = useState([]);
+    const [inventoryData, setInventoryData] = useState([]);
 
     useEffect(() => {
         getDataList();
+        getDataListInventory();
     }, []);
 
     const getDataList = async () => {
         try {
             const res = await apiClient.getProductionOrder();
             setDataSource(res);
+        } catch (error) {
+            console.error("error", error);
+        }
+    };
+
+    const getDataListInventory = async () => {
+        try {
+            const res = await apiClient.getInventory();
+            setInventoryData(res);
         } catch (error) {
             console.error("error", error);
         }
@@ -115,7 +126,12 @@ function Page() {
             </div>
             <UseTable dataSource={dataSource} columns={columns} />
             <UseModal modal={isModalOpen.open} setModal={setIsModalOpen} title="สร้างคำสั่งผลิต">
-                <Form modal={isModalOpen} setModal={setIsModalOpen} getDataList={getDataList} />
+                <Form
+                    modal={isModalOpen}
+                    setModal={setIsModalOpen}
+                    getDataList={getDataList}
+                    inventoryData={inventoryData}
+                />
             </UseModal>
         </main>
     );
