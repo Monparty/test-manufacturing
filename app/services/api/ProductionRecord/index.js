@@ -1,4 +1,4 @@
-import { productionRecord } from "./ProductionRecord";
+import { productionRecord } from "./productionRecord";
 
 const productionRecordApi = {
     ...productionRecord,

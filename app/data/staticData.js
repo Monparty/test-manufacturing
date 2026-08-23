@@ -70,3 +70,18 @@ export const taskStatusOptions = [
         label: "เสร็จสิ้น",
     },
 ];
+
+export const stockLevelOptions = [
+    {
+        value: "LOW",
+        label: "ต่ำมาก",
+    },
+    {
+        value: "NORMAL",
+        label: "ปกติ",
+    },
+    {
+        value: "OUT_OF_STOCK",
+        label: "สินค้าหมด",
+    },
+];

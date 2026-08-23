@@ -25,9 +25,7 @@ function Page() {
     const getDataList = async () => {
         try {
             const res = await apiClient.getProductionOrder();
-            if (res.length > 0) {
-                setDataSource(res);
-            }
+            setDataSource(res);
         } catch (error) {
             console.error("error", error);
         }
