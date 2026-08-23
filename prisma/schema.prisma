@@ -17,7 +17,7 @@ model ProductionOrder {
   id        Int                @id @default(autoincrement())
   product   String
   quantity  Int
-  status    TaskStatus?         @default(PENDING)
+  status    TaskStatus?        @default(PENDING)
   dueDate   DateTime
   customer  String
   createdAt DateTime           @default(now())
@@ -44,7 +44,7 @@ enum MachineStatus {
 model Machine {
   id          Int              @id @default(autoincrement())
   name        String
-  status      MachineStatus?    @default(PENDING)
+  status      MachineStatus?   @default(PENDING)
   temp        Int?
   load        Int?
   time        DateTime?
@@ -66,7 +66,11 @@ enum StockLevel {
 }
 
 model Inventory {
-  id         Int        @id @default(autoincrement())
-  itemName   String
-  stockLevel StockLevel @default(LOW)
+  id           Int         @id @default(autoincrement())
+  itemName     String
+  quantity     Int         @default(0)
+  minimumStock Int?        @default(0)
+  unit         String
+  stockLevel   StockLevel? @default(LOW)
+  createdAt    DateTime    @default(now())
 }
