@@ -18,10 +18,12 @@ function Page() {
     const [isModalOpen, setIsModalOpen] = useState({ open: false, data: null });
     const [dataSource, setDataSource] = useState([]);
     const [inventoryData, setInventoryData] = useState([]);
+    const [machineOptions, setMachineOptions] = useState([]);
 
     useEffect(() => {
         getDataList();
         getDataListInventory();
+        getDataListMachine();
     }, []);
 
     const getDataList = async () => {
@@ -37,6 +39,19 @@ function Page() {
         try {
             const res = await apiClient.getInventory();
             setInventoryData(res);
+        } catch (error) {
+            console.error("error", error);
+        }
+    };
+
+    const getDataListMachine = async () => {
+        try {
+            const res = await apiClient.getMachine();
+            const formatData = res.map((item) => ({
+                value: item.id,
+                label: item.name,
+            }));
+            setMachineOptions(formatData);
         } catch (error) {
             console.error("error", error);
         }
@@ -76,6 +91,18 @@ function Page() {
             title: "สถานะ",
             dataIndex: "status",
             key: "status",
+        },
+        {
+            title: "สถานะ",
+            dataIndex: "machineId",
+            key: "machineId",
+            render: (value) => {
+                return (
+                    <div className="flex justify-center">
+                        {machineOptions?.find((item) => item.value === value)?.label || ""}
+                    </div>
+                );
+            },
         },
         {
             title: "วันกำหนดส่ง",
@@ -130,6 +157,7 @@ function Page() {
                     modal={isModalOpen}
                     setModal={setIsModalOpen}
                     getDataList={getDataList}
+                    machineOptions={machineOptions}
                     inventoryData={inventoryData}
                 />
             </UseModal>

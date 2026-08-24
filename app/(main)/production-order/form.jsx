@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { schema } from "./schema";
 
-function Form({ modal, setModal, getDataList, inventoryData }) {
+function Form({ modal, setModal, getDataList, inventoryData, machineOptions }) {
     const { handleSubmit, reset, watch, getValues, control } = useForm({
         resolver: yupResolver(schema),
         mode: "onBlur",
@@ -38,6 +38,7 @@ function Form({ modal, setModal, getDataList, inventoryData }) {
                 quantity: value.quantity,
                 status: value.status,
                 dueDate: value.dueDate,
+                machineId: Number(value.machineId),
                 customer: value.customer,
             };
 
@@ -50,6 +51,7 @@ function Form({ modal, setModal, getDataList, inventoryData }) {
                 res = await apiClient.addProductionOrder(payload);
             }
             updateInventory();
+            updateMachine();
             if (res.success) {
                 alert("บันทึกสำเร็จ");
                 reset({});
@@ -84,6 +86,23 @@ function Form({ modal, setModal, getDataList, inventoryData }) {
         }
     };
 
+    const updateMachine = async () => {
+        try {
+            const value = getValues();
+            const machineName = machineOptions?.find((item) => item.value === value.machineId)?.label || "";
+            const payload = {
+                name: machineName,
+                status: "NORMAL",
+                temp: 30,
+                load: 10,
+                time: value.dueDate,
+            };
+            await apiClient.updateMachine(value.machineId, payload);
+        } catch (error) {
+            console.error("error", error);
+        }
+    };
+
     return (
         <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-4">
@@ -91,6 +110,7 @@ function Form({ modal, setModal, getDataList, inventoryData }) {
                 <InputNumber control={control} name="quantity" label="จำนวน (หน่วย)" />
                 <UseDatePicker control={control} name="dueDate" label="วันกำหนดส่ง" />
                 <InputText control={control} name="customer" label="ลูกค้า" />
+                <UseSelect control={control} name="machineId" label="เครื่องจักร" options={machineOptions} />
                 <UseSelect control={control} name="status" label="สถานะ" options={taskStatusOptions} />
             </div>
             <div>

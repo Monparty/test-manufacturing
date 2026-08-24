@@ -19,6 +19,7 @@ model ProductionOrder {
   quantity  Int
   status    TaskStatus?        @default(PENDING)
   dueDate   DateTime
+  machineId Int
   customer  String
   createdAt DateTime           @default(now())
   records   ProductionRecord[]

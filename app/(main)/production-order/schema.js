@@ -5,4 +5,5 @@ export const schema = yup.object({
     quantity: yup.number().required("กรุณาระบุข้อมูล"),
     dueDate: yup.string().required("กรุณาระบุข้อมูล"),
     customer: yup.string().required("กรุณาระบุข้อมูล"),
+    machineId: yup.string().required("กรุณาระบุข้อมูล"),
 });

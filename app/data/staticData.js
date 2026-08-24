@@ -103,6 +103,6 @@ export const machineStatusOptions = [
 
 export const machineStatusMap = {
     NORMAL: { bg1: "bg-blue-100", bg2: "bg-blue-500" },
-    PENDING: { bg1: "bg-yellow-100", bg2: "bg-yellow-500" },
+    PENDING: { bg1: "bg-slate-100", bg2: "bg-slate-500" },
     ERROR: { bg1: "bg-red-100", bg2: "bg-red-500" },
 };
