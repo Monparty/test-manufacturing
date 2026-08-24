@@ -35,4 +35,6 @@ Manufacturing System คือ ระบบที่ใช้บริหาร�
     # DIRECT_URL="postgresql://myuser:mypassword@localhost:5432/mydb?schema=public"
     # LOCAL_URL="http://localhost:3000"
 
+    # ส่วนนี้ myuser:mypassword ถ้าในเครื่องลง postgresql ไว้อยู่แล้วให้ใช้ username:password ของเครื่องนั้น
+
 ```
